@@ -61,8 +61,7 @@
       );
     },
 
-
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -79,12 +78,59 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // return false; // fixme
+
+      // store the input rowIndex in a variable using "this" keyword
+      // create count var set to 0
+      // iterate over the rowIndex
+      //   if current element equals 1
+      //     increment count by 1
+
+      // if count is greater than 1
+      //   return true
+      // otherwise
+      //   return false
+
+      // Get the current value of an attribute from the model. For example: note.get("title")
+
+      let row = this.rows()[rowIndex];
+      // this.get(rowIndex)
+      let counter = 0;
+
+      for (let i = 0; i < row.length; i++) {
+        if (row[i] === 1) {
+          counter++;
+        }
+      }
+
+      if (counter > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      // return false; // fixme
+
+      // create a var that stores all the rows of our board
+
+      // iterate over the var
+      //   if the current row's elements has a conflict (use this.hasRowConflictAt)
+      //     return true
+
+      // return false
+
+      let rows = this.rows();
+
+      for (let i = 0; i < rows.length; i++) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+
+      return false;
     },
 
 
@@ -94,12 +140,59 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // return false; // fixme
+
+      // create a var that stores our board's rows
+      // create an empty array var to store our columns
+      // create a count var set to 0
+
+      // iterate over the rows
+      //   push the item where the current row at colIndex sits into the empty array
+      // iterate over the columns array
+      //   if the current item is equal to 1
+      //     increment the counter by 1
+
+      // if count is greater than 1
+      //   return true
+      // otherwise
+      //   return false
+
+      let newRows = this.rows();
+      let counter = 0;
+
+      for (let i = 0; i < newRows.length; i++) {
+        if (newRows[i][colIndex] === 1) {
+          counter++;
+        }
+      }
+
+      if (counter > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      // return false; // fixme
+
+      // make a var that stores all the rows on our board
+
+      // iterate over that var
+      //   if current item in column has a conflict (use this.hasColConflictAt)
+      //     return true
+
+      // return false
+
+      let newRows = this.rows();
+
+      for (let i = 0; i < newRows.length; i++) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
@@ -109,12 +202,64 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // return false; // fixme
+
+      // make a var that stores all the rows on our board
+      // create an empty array for the diagonals
+      // create a count var set to 0
+      // iterate over the rows array
+      //   push the item that sits inside the current row at majorDiagonalColumnIndexAtFirstRow
+      //    increment majorDiagonalColumnIndexAtFirstRow
+
+      // iterate over the diagonals array
+      //   if current item is equal to 1
+      //    increment the count by 1
+
+      // if count is greater than 1
+      //   return true
+      // otherwise
+      //    return false
+
+      let rows = this.rows();
+      let counter = 0;
+      let diagonals = [];
+      let index = majorDiagonalColumnIndexAtFirstRow;
+
+      for (let i = 0; i < rows.length; i++) {
+        diagonals.push(rows[i][index]);
+        index++;
+      }
+      // console.log(diagonals);
+
+      for (let j = 0; j < diagonals.length; j++) {
+        if (diagonals[j] === 1) {
+          counter++;
+        }
+      }
+
+      if (counter > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // return false; // fixme
+
+      // create a var that stores all the rows on our board
+
+      // iterate into the rows array
+
+      let rows = this.rows();
+
+      for (let i = -rows.length; i < rows.length; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
@@ -124,12 +269,43 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // return false; // fixme
+
+      let rows = this.rows();
+      let counter = 0;
+      let diagonals = [];
+      let index = minorDiagonalColumnIndexAtFirstRow;
+
+      for (let i = 0; i < rows.length; i++) {
+        diagonals.push(rows[i][index]);
+        index--;
+      }
+      // console.log(diagonals);
+
+      for (let j = 0; j < diagonals.length; j++) {
+        if (diagonals[j] === 1) {
+          counter++;
+        }
+      }
+
+      if (counter > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      // return false; // fixme
+      let rows = this.rows();
+
+      for (let i = 0; i < rows.length * 2; i++) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
